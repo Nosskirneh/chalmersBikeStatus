@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding=utf-8
-from apikey import *
+from config import *
 import os
 import json
 import requests
