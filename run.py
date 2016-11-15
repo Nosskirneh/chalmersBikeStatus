@@ -5,10 +5,6 @@ import os
 import json
 import requests
 from flask import Flask, render_template
-import sys
-reload(sys)  
-sys.setdefaultencoding('utf8')
-
 
 def getData(latitude, longitude, radius, dictType):
 	r = requests.get(HOST + APP_KEY + "?latitude=" + latitude + "&longitude=" + longitude + "&radius=" + radius + "&format=" + dictType)
