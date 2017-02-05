@@ -48,12 +48,12 @@ div {
 #question, #answer {
 	display: block;
 	padding-top: 5px;
-	margin: 0 auto !important;
+	margin: 0 auto;
 	text-align: center;
 }
 
 #question {
-	margin-top: 70px !important;
+	margin-top: 70px;
 }
 
 #answer {
@@ -78,24 +78,24 @@ div {
 
 @media screen and (max-width: 1000px) {
 	body {
-		width: 100% !important;
+		width: 100%;
 	}
 
 	header span {
-		font-size: 0.4em;
+		font-size: 0.5em;
 	}
 
 	#logo {
-		margin-top: 0.8em !important;
-		margin-bottom: 1em !important;
+		margin-top: 0.8em;
+		margin-bottom: 1em;
 	}
 
 	#question {
-		font-size: 0.4em !important;
+		font-size: 0.4em;
 	}
 
 	#answer {
-		font-size: 0.7em !important;
+		font-size: 0.7em;
 	}
 
 	#boxContainer div {
@@ -103,37 +103,77 @@ div {
 	}
 }
 
-@media screen and (max-width: 700px) {
-	header {
-		font-size: 0.7em !important;
+/* iPad Pro */
+@media only screen 
+and (min-device-width : 1024px) 
+and (max-device-width : 1366px) {
+	.infoBox span {
+		font-size: 0.5em;
+	}
+}
+
+/* iPad */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px){
+	header span {
+		font-size: 0.9em;
 	}
 
-	.infoBox {
-		font-size: 0.7em !important;
+	#answer {
+    	font-size: 1.2em;
+	}
+}
+
+/* iPad landscape */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+	header span {
+		font-size: 0.9em;
+	}
+
+	.infoBox span {
+		font-size: 0.3em;
+	}
+
+	#logo {
+		margin-bottom: 1em;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	header {
+		font-size: 0.7em;
+	}
+
+	.infoBox span {
+		font-size: 0.7em;
 	}
 }
 
 @media screen and (max-width: 440px) {
 	header {
-		margin-top: -0.5em !important;
-		font-size: 0.6em !important;
+		margin-top: -0.5em;
+		font-size: 0.6em;
 	}
 
 	#logo {
-		margin-top: 0.4em !important;
-		margin-bottom: 0.6em !important;
+		margin-top: 0.4em;
+		margin-bottom: 0.6em;
 	}
 
 	#question {
-		margin-top: 50px !important;
+		margin-top: 50px;
 	}
 
-	.infoBox {
-		font-size: 0.5em !important;
+	.infoBox span {
+		font-size: 0.22em;
 	}
 
 @media screen and (max-width: 280px) {
-	.infoBox {
-		font-size: 0.4em !important;
+	.infoBox span {
+		font-size: 0.4em;
 	}
 }
