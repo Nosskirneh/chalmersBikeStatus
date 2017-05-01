@@ -1,5 +1,5 @@
 # coding=utf-8
 APP_KEY = ""
-HOST    = "http://data.goteborg.se/StyrOchStall/v0.1/GetBikeStations/"
-DEP_STATIONS = ["CHALMERS TVÄRGATA", "CHALMERSPLATSEN"]
-ARR_STATIONS = ["DROTTNINGTORGET", "SLUSSPLATSEN"]
+HOST    = "http://data.goteborg.se/SelfServiceBicycleService/v1.0/Stations/"
+DEP_STATIONS = ["Chalmers Tvärgata", "Chalmersplatsen"]
+ARR_STATIONS = ["Drottningtorget", "Slussplatsen"]

@@ -22,7 +22,7 @@
 	<script type="text/javascript">
 		var stationlist = [
 			{% for station in stations %}
-			{ Label: '{{ station.Label }}', FreeBikes: {{ station.FreeBikes }}, FreeStands: '{{ station.FreeStands }}' } {{ ',' if not loop.last }}
+			{ Label: '{{ station.Name }}', FreeBikes: '{{ station.AvailableBikes }}', FreeStands: '{{ station.AvailableBikeStands }}' } {{ ',' if not loop.last }}
 			{% endfor %}
 		];
 

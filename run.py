@@ -7,8 +7,9 @@ import requests
 from flask import Flask, render_template
 
 def getData(latitude, longitude, radius, dictType):
-	r = requests.get(HOST + APP_KEY + "?latitude=" + latitude + "&longitude=" + longitude + "&radius=" + radius + "&format=" + dictType)
-	return r.json()["Stations"]
+	r = requests.get(HOST + APP_KEY + "?getclosingperiods=False" + "&latitude=" + latitude + "&longitude=" + longitude + "&radius=" + radius + "&format=" + dictType)
+
+	return r.json()
 
 def compileStation(latitude, longitude, radius, dictType):
 	global stations
@@ -17,21 +18,24 @@ def compileStation(latitude, longitude, radius, dictType):
 
 	for entry in data:
 		station = {}
-		station['Label'] = entry['Label']
-		station['FreeBikes'] = entry['FreeBikes']
-		station['FreeStands'] = entry['FreeStands']
+		station['Name'] = entry['Name']
+		if not 'AvailableBikes' in entry.keys():
+			station['AvailableBikes'] = 0
+		else:
+			station['AvailableBikes'] = entry['AvailableBikes']
+		station['AvailableBikeStands'] = entry['AvailableBikeStands']
 		stations.append(station)
-		#print("Station: %s, Number of free bikes: %s, Number of empty slots: %s"%(station['Label'], station['FreeBikes'], station['FreeStands'])) #logging
+		#print("Station: %s, Number of free bikes: %s, Number of empty slots: %s"%(station['Name'], station['AvailableBikes'], station['AvailableBikeStands'])) #logging
 
 def available(stationlist):
 	issues = 0
 	if stationlist is DEP_STATIONS:
-		item = 'FreeBikes'
+		item = 'AvailableBikes'
 	else:
-		item = 'FreeStands'
+		item = 'AvailableBikeStands'
 	for sta1 in stations:
 		for sta2 in stationlist:
-			if sta2 == sta1['Label'] and sta1[item] is 0:
+			if sta2 == sta1['Name'] and sta1[item] is 0:
 					issues += 1
 	if issues > 1:
 		return False
@@ -41,13 +45,13 @@ def analyzeData():
 	global stations
 	stations = []
 	compileStation("57.708074", "11.972737", "200", "JSON")
-	compileStation("57.68979", "11.97305", "400", "JSON")
+	compileStation("57.68979", "11.97305", "410", "JSON")
 
 	# for test scenarios
-	# stations[0]['FreeStands'] = 5
-	# stations[1]['FreeStands'] = 4
-	# stations[2]['FreeBikes'] = 1
-	# stations[3]['FreeBikes'] = 0
+	# stations[0]['AvailableBikeStands'] = 5
+	# stations[1]['AvailableBikeStands'] = 4
+	# stations[2]['AvailableBikes'] = 1
+	# stations[3]['AvailableBikes'] = 0
 
 	if not available(DEP_STATIONS) or not available(ARR_STATIONS):
 		return False
