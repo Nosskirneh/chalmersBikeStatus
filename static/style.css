@@ -1,7 +1,7 @@
 * {
-	-webkit-user-select: none;
-	-webkit-touch-callout: none;
-	-khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -10,119 +10,119 @@
 }
 
 body {
-	width: 1000px;
+    width: 1000px;
     margin: 0 auto;
-	background-color: #0B0D0F;
-	color: #eee;
-	font-family: 'Open Sans', sans-serif;
+    background-color: #0B0D0F;
+    color: #eee;
+    font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     margin: auto;
-	margin-top: 0.1em;
+    margin-top: 0.1em;
     width: 100%;
     font-weight: 100;
-	font-size: 5em;
-	text-align: center;
+    font-size: 5em;
+    text-align: center;
 }
 
 header {
-	margin-top: 0.3em;
-	font-size: 0.6em;
-	color: #a9a9a9;
+    margin-top: 0.3em;
+    font-size: 0.6em;
+    color: #a9a9a9;
 }
 
 #logo {
-	margin-top: 0.4em;
-	margin-bottom: 2em;
-	height: 50px;
-	width: 50px;
-	background-size: 50px 50px;
-	background-image: url("bike_50@2x.png");
-	background-repeat: no-repeat;
+    margin-top: 0.4em;
+    margin-bottom: 2em;
+    height: 50px;
+    width: 50px;
+    background-size: 50px 50px;
+    background-image: url("bike_50@2x.png");
+    background-repeat: no-repeat;
 }
 
 div {
-	margin: 0 auto;
-	padding: 0;
+    margin: 0 auto;
+    padding: 0;
 }
 
 #question, #answer {
-	display: block;
-	padding-top: 5px;
-	margin: 0 auto;
-	text-align: center;
+    display: block;
+    padding-top: 5px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 #question {
-	margin-top: 70px;
+    margin-top: 70px;
 }
 
 #answer {
-	font-size: 1.2em;
+    font-size: 1.2em;
 }
 
 #boxContainer {
-	display: flex;
+    display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
 #boxContainer div {
-	align-items: center;
-	padding: 20px 20px 0 20px;
+    align-items: center;
+    padding: 20px 20px 0 20px;
 }
 
 .infoBox span {
-	font-size: 0.4em;
-	display: block;
+    font-size: 0.4em;
+    display: block;
 }
 
 @media screen and (max-width: 1000px) {
-	body {
-		width: 100%;
-	}
+    body {
+        width: 100%;
+    }
 
-	header span {
-		font-size: 0.5em;
-	}
+    header span {
+        font-size: 0.5em;
+    }
 
-	#logo {
-		margin-top: 0.8em;
-		margin-bottom: 1em;
-	}
+    #logo {
+        margin-top: 0.8em;
+        margin-bottom: 1em;
+    }
 
-	#question {
-		font-size: 0.4em;
-	}
+    #question {
+        font-size: 0.4em;
+    }
 
-	#answer {
-		font-size: 0.7em;
-	}
+    #answer {
+        font-size: 0.7em;
+    }
 
-	#boxContainer div {
-		width: 50%;
-	}
+    #boxContainer div {
+        width: 50%;
+    }
 }
 
 /* iPad Pro */
 @media only screen 
 and (min-device-width : 1024px) 
 and (max-device-width : 1366px) {
-	.infoBox span {
-		font-size: 0.5em;
-	}
+    .infoBox span {
+        font-size: 0.5em;
+    }
 }
 
 /* iPad */
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px){
-	header span {
-		font-size: 0.9em;
-	}
+    header span {
+        font-size: 0.9em;
+    }
 
-	#answer {
-    	font-size: 1.2em;
-	}
+    #answer {
+        font-size: 1.2em;
+    }
 }
 
 /* iPad landscape */
@@ -130,49 +130,49 @@ and (max-device-width : 1024px){
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : landscape) {
-	header span {
-		font-size: 0.9em;
-	}
+    header span {
+        font-size: 0.9em;
+    }
 
-	.infoBox span {
-		font-size: 0.3em;
-	}
+    .infoBox span {
+        font-size: 0.3em;
+    }
 
-	#logo {
-		margin-bottom: 1em;
-	}
+    #logo {
+        margin-bottom: 1em;
+    }
 }
 
 @media screen and (max-width: 736px) {
-	header {
-		margin-top: -0.5em;
-		font-size: 0.6em;
-	}
+    header {
+        margin-top: -0.5em;
+        font-size: 0.6em;
+    }
 
-	#logo {
-		margin-top: 0.4em;
-		margin-bottom: 0.6em;
-	}
+    #logo {
+        margin-top: 0.4em;
+        margin-bottom: 0.6em;
+    }
 
-	#question {
-		margin-top: 50px;
-	}
+    #question {
+        margin-top: 50px;
+    }
 
-	.infoBox span {
-		font-size: 0.22em;
-	}
+    .infoBox span {
+        font-size: 0.22em;
+    }
 
 /* Generic phone landscape */
 @media only screen 
 and (min-device-width : 400px)
 and (orientation : landscape) {
-	#boxContainer {
-		display: none;
-	}
+    #boxContainer {
+        display: none;
+    }
 
-	#question {
-    	margin-top: initial;
-	}
+    #question {
+        margin-top: initial;
+    }
 }
 
 /* iPhone 5 landscape */
@@ -181,13 +181,13 @@ and (min-device-width : 320px)
 and (max-device-width : 568px) 
 and (orientation : landscape) {
 
-	#question {
-		margin-top: initial;
-	}
+    #question {
+        margin-top: initial;
+    }
 }
 
 @media screen and (max-width: 280px) {
-	.infoBox span {
-		font-size: 0.4em;
-	}
+    .infoBox span {
+        font-size: 0.4em;
+    }
 }
