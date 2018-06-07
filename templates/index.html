@@ -1,140 +1,135 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Chalmers Bike Status</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Chalmers Bike Status</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
 
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
-	<link rel="shortcut icon" type="image/ico" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" type="image/ico" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 
 <body>
-	<header>
-		<span>Chalmers to Central station</span>
-		<div id=logo></div>
-	</header>
-	<div id="boxContainer">
-	</div>
-	<span id="question">Can I take the bike?</span>
-	<span id="answer">What do I know?</span>
-	<script type="text/javascript">
-		var stationlist = [
-			{% for station in stations %}
-			{ Label: '{{ station.Name }}', FreeBikes: '{{ station.AvailableBikes }}', FreeStands: '{{ station.BikeStands }}' } {{ ',' if not loop.last }}
-			{% endfor %}
-		];
+    <header>
+        <span>Chalmers to Central station</span>
+        <div id=logo></div>
+    </header>
+    <div id="boxContainer">
+    </div>
+    <span id="question">Can I take the bike?</span>
+    <span id="answer">What do I know?</span>
+    <script type="text/javascript">
+        var stationlist = [
+            {% for station in stations %}
+                { Label: '{{ station.Name }}', FreeBikes: '{{ station.AvailableBikes }}', FreeStands: '{{ station.BikeStands }}' } {{ ',' if not loop.last }}
+            {% endfor %}
+        ];
 
-		takeBike = '{{ data }}';
-		DEP_STATIONS = '{{ dep_arr[0] }}';
-		ARR_STATIONS = '{{ dep_arr[1] }}';
-
-
-	    // Function to create elements
-	    function createInfoElements(element, item, station){
-	        var newSpan = document.createElement(element);
-	        newSpan.className = item;
-	        if (item == 'Label') {
-	        	newSpan.innerHTML = stationlist[station][item];
-	        }
-	        else if (item == 'FreeBikes') {
-	        	var text = document.createElement(element);
-	        	text.className = "bikeText";
-	        	text.innerHTML = "Bikes: ";
-	        	document.getElementsByClassName('infoBox')[station].appendChild(text);
-	        }
-	        else if (item == 'FreeStands') {
-	        	var text = document.createElement(element);
-	        	text.className = "standText";
-	        	text.innerHTML = "Stands: ";
-	        	document.getElementsByClassName('infoBox')[station].appendChild(text);
-	        }
-
-	        newSpan.innerHTML = stationlist[station][item];
-
-	        document.getElementsByClassName('infoBox')[station].appendChild(newSpan); 
-	    };
-
-	    // Function to colorize elements
-	    function colorize(item){
-	    	var val = parseInt(item.innerHTML);
-	        if (val == 0) {
-	        	item.style.color = "red";
-	        	if (item == freeBikes) {
-	        		is_zero[0] += 1;
-	        	} else {
-	        		is_zero[1] += 1;
-	        	}
-	        } else if (val < 5 && val > 0 && item.style.display != 'none') {
-	        	item.style.color = "orange";
-	        	if (item == freeBikes) {
-	        		below_treshold[0] += 1;
-	        	} else {
-	        		below_treshold[1] += 1;
-	        	}
-	        } else {
-	        	item.style.color = "green";
-	        }
-	    };
-
-	    function changeAnswer(extra) {
-			answer = document.getElementById('answer');
-	        if (extra == "Risky") {
-		        answer.innerHTML = "Risky";
-		        answer.style.color = "orange";
-	        } else if (takeBike == "True") {
-		        answer.innerHTML = "Yes";
-		        answer.style.color = "green";
-	        } else {
-		        answer.innerHTML = "No";
-		        answer.style.color = "red";
-	        }
-	    }
+        takeBike = '{{ data }}';
+        DEP_STATIONS = '{{ dep_arr[0] }}';
+        ARR_STATIONS = '{{ dep_arr[1] }}';
 
 
-    	// Create elements and style them
-		below_treshold = [0, 0];
-		is_zero = [0, 0];
-        for (station in stationlist) {
-        	var newInfoBox = document.createElement('div');
-	        newInfoBox.className = 'infoBox';
-	        document.getElementById('boxContainer').appendChild(newInfoBox);
+        // Function to create elements
+        function createInfoElements(element, item, station){
+            var newSpan = document.createElement(element);
+            newSpan.className = item;
+            if (item == 'Label') {
+                newSpan.innerHTML = stationlist[station][item];
+            } else if (item == 'FreeBikes') {
+                var text = document.createElement(element);
+                text.className = "bikeText";
+                text.innerHTML = "Bikes: ";
+                document.getElementsByClassName('infoBox')[station].appendChild(text);
+            } else if (item == 'FreeStands') {
+                var text = document.createElement(element);
+                text.className = "standText";
+                text.innerHTML = "Stands: ";
+                document.getElementsByClassName('infoBox')[station].appendChild(text);
+            }
 
-	        createInfoElements('span', 'Label', station);
-	        createInfoElements('span', 'FreeBikes', station);
-	        createInfoElements('span', 'FreeStands', station);
+            newSpan.innerHTML = stationlist[station][item];
 
-
-	        box = document.getElementsByClassName('infoBox')[station];
-	        label = box.getElementsByClassName('Label')[0];
-	        freeBikes = box.getElementsByClassName('FreeBikes')[0];
-	        bikeText = box.getElementsByClassName('bikeText')[0];
-	        freeStands = box.getElementsByClassName('FreeStands')[0];
-	        standText = box.getElementsByClassName('standText')[0];
-
-	        if (DEP_STATIONS.indexOf(label.innerHTML) > -1) {
-	        	freeStands.style.display = 'none';
-	        	standText.style.display = 'none';
-	        } else {
-	        	freeBikes.style.display = 'none';
-	        	bikeText.style.display = 'none';
-	        }
-
-	        colorize(freeBikes);
-	        colorize(freeStands);
+            document.getElementsByClassName('infoBox')[station].appendChild(newSpan); 
         };
 
-        if (is_zero[0] == 2 || is_zero[1] == 2 ) {
-        	changeAnswer();
-        } else if (below_treshold[0] == 2 || below_treshold[1] == 2 ||
-        	(below_treshold[0] + is_zero[0] == 2 && is_zero[0] != 2) ||
-        	(below_treshold[1] + is_zero[1] == 2 && is_zero[1] != 2)) {
-        	changeAnswer("Risky");
-        } else {
-        	changeAnswer();
+        // Function to colorize elements
+        function colorize(item) {
+            var val = parseInt(item.innerHTML);
+            if (val == 0) {
+                item.style.color = "red";
+                if (item == freeBikes && item.style.display != 'none')
+                    is_zero[0] += 1;
+                else
+                    is_zero[1] += 1;
+            } else if (val < 5 && val > 0 && item.style.display != 'none') {
+                item.style.color = "orange";
+                if (item == freeBikes)
+                    below_treshold[0] += 1;
+                else
+                    below_treshold[1] += 1;
+            } else {
+                item.style.color = "green";
+            }
+        };
+
+        function changeAnswer(extra) {
+            answer = document.getElementById('answer');
+            if (extra == "Risky") {
+                answer.innerHTML = "Risky";
+                answer.style.color = "orange";
+            } else if (takeBike == "True") {
+                answer.innerHTML = "Yes";
+                answer.style.color = "green";
+            } else {
+                answer.innerHTML = "No";
+                answer.style.color = "red";
+            }
         }
 
+
+        // Create elements and style them
+        below_treshold = [0, 0];
+        is_zero = [0, 0];
+        for (station in stationlist) {
+            var newInfoBox = document.createElement('div');
+            newInfoBox.className = 'infoBox';
+            document.getElementById('boxContainer').appendChild(newInfoBox);
+
+            createInfoElements('span', 'Label', station);
+            createInfoElements('span', 'FreeBikes', station);
+            createInfoElements('span', 'FreeStands', station);
+
+
+            box = document.getElementsByClassName('infoBox')[station];
+            label = box.getElementsByClassName('Label')[0];
+            freeBikes = box.getElementsByClassName('FreeBikes')[0];
+            bikeText = box.getElementsByClassName('bikeText')[0];
+            freeStands = box.getElementsByClassName('FreeStands')[0];
+            standText = box.getElementsByClassName('standText')[0];
+
+            if (DEP_STATIONS.indexOf(label.innerHTML) > -1) {
+                freeStands.style.display = 'none';
+                standText.style.display = 'none';
+            } else {
+                freeBikes.style.display = 'none';
+                bikeText.style.display = 'none';
+            }
+
+            colorize(freeBikes);
+            colorize(freeStands);
+        };
+
+        if (is_zero[0] == 2 || is_zero[1] == 2) {
+            changeAnswer();
+        } else if (below_treshold[0] == 2 || below_treshold[1] == 2 ||
+            (below_treshold[0] + is_zero[0] == 2 && is_zero[0] != 2) ||
+            (below_treshold[1] + is_zero[1] == 2 && is_zero[1] != 2)) {
+            changeAnswer("Risky");
+        } else {
+            changeAnswer();
+        }
 
     </script>
 
